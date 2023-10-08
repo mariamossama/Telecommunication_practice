@@ -1,7 +1,9 @@
 import json
+import sys
 
+file = sys.argv[1]
 # Read the JSON file
-with open("cs1.json", "r") as json_file:
+with open(file, "r") as json_file:
     data = json.load(json_file)
 
 def reserve_circuit(dict ,circuit, current_time):
@@ -72,7 +74,6 @@ for demand in data['simulation']['demands']:
                first_endpoint, last_endpoint = circuit[0], circuit[-1]
                print(f"{event_number + 1}st demand reservation:  {first_endpoint} <-> {last_endpoint} st:{current_time + demand_end_time} - unsuccessful")
 
-        print(circuit_capacity.items())
         for  circuit , values in circuit_capacity.items():
             if should_release_circuit(circuit_capacity , circuit, current_time, demand_end_time):
                 print(f'curr time is {current_time}')
